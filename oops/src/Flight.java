@@ -18,14 +18,14 @@ public class Flight {
     }
 
     public boolean hasRoom(Flight f2){
-        int total = passengers + f2.passengers;
-        return total <= seats;
+        int total = this.passengers + f2.passengers;
+        return total <= this.seats;
     }
 
     public Flight createNewWithBoth(Flight f2){
         Flight newFlight = new Flight();
-        newFlight.seats = seats;
-        newFlight.passengers = passengers + f2.passengers;
+        newFlight.seats = this.seats;
+        newFlight.passengers = this.passengers + f2.passengers;
         return newFlight;
     }
 
