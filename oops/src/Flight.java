@@ -2,13 +2,25 @@
  * Created by Biks on 5/15/2017.
  */
 public class Flight {
-    int passengers;
-    int seats;
+    private int passengers, flightNumber, seats = 150;
+    private char flightClass;
+    private boolean[] isSeatAvailable;
 
-    Flight(){
-        seats = 150;
-        passengers = 0;
+    //initialization Blocks
+    {
+        isSeatAvailable = new boolean[seats];
+        for(int i = 0; i < seats; i++)
+            isSeatAvailable[i] = true;
     }
+
+    public Flight(){}
+    public Flight(int flightNumber){
+        this.flightNumber = flightNumber;
+    }
+    public Flight(char flightClass){
+        this.flightClass = flightClass;
+    }
+
 
     void  add1passenger(){
         if (passengers < seats)
