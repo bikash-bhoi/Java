@@ -1,27 +1,41 @@
-import javax.jnlp.PersistenceService;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        CrewMember pilot = new CrewMember("Pilot Virat");
-        CrewMember coPilot = new CrewMember("CoPilot Rohit");
+        Flight del045 = new Flight();
+        //Add Crew
+        del045.addCrew("Pilot Virat");
+        del045.addCrew("CoPilot Rohit");
 
-        Passenger neeta = new Passenger("Neeta");
-        Passenger amitabh = new Passenger("Amitabh");
-        Passenger abhishek = new Passenger("Abhishek");
-        Passenger aishwarya = new Passenger("aishwarya");
+        //Add Passengers
+        del045.addPassenger("Amitabh");
+        del045.addPassenger("Abhishek");
+        del045.addPassenger("aishwarya");
 
-        CrewMember[] crew = {pilot, coPilot};
-        Passenger[] roster = {neeta, amitabh, abhishek, aishwarya};
+        System.out.println("Initial");
+        del045.printPassengers();
 
-        Flight del045 = new Flight(crew, roster);
-        
-        Iterator<Person> persons = del045.iterator();
-        while(persons.hasNext()){
-            Person p = persons.next();
-            System.out.println(p.getName());
-        }
+        System.out.println("Adding Aamir");
+        del045.addPassenger("Aamir");
+        del045.printPassengers();
+
+        System.out.println("Removing Last Passenger");
+        del045.removeLastPassenger();
+        del045.printPassengers();
+
+        del045.removeLastPassenger();
+        del045.removeLastPassenger();
+        del045.removeLastPassenger();
+        System.out.println("Removing All Passenger");
+        del045.printPassengers();
+
+        System.out.println("Trying to remove when there are no Passengers");
+        del045.removeLastPassenger();
+        del045.printPassengers();
+
     }
+
 }
