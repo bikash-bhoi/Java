@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_iteratorpattern" default="compile.module.iteratorpattern">
+  <dirname property="module.iteratorpattern.basedir" file="${ant.file.module_iteratorpattern}"/>
+  
+  <property name="module.jdk.home.iteratorpattern" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.iteratorpattern" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.iteratorpattern" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.iteratorpattern" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="iteratorpattern.output.dir" value="${module.iteratorpattern.basedir}/out/production/iteratorPattern"/>
+  <property name="iteratorpattern.testoutput.dir" value="${module.iteratorpattern.basedir}/out/test/iteratorPattern"/>
+  
+  <path id="iteratorpattern.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="iteratorpattern.module.production.classpath">
+    <path refid="${module.jdk.classpath.iteratorpattern}"/>
+  </path>
+  
+  <path id="iteratorpattern.runtime.production.module.classpath">
+    <pathelement location="${iteratorpattern.output.dir}"/>
+  </path>
+  
+  <path id="iteratorpattern.module.classpath">
+    <path refid="${module.jdk.classpath.iteratorpattern}"/>
+    <pathelement location="${iteratorpattern.output.dir}"/>
+  </path>
+  
+  <path id="iteratorpattern.runtime.module.classpath">
+    <pathelement location="${iteratorpattern.testoutput.dir}"/>
+    <pathelement location="${iteratorpattern.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.iteratorpattern">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.iteratorpattern">
+    <patternset refid="excluded.from.module.iteratorpattern"/>
+  </patternset>
+  
+  <path id="iteratorpattern.module.sourcepath">
+    <dirset dir="${module.iteratorpattern.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.iteratorpattern" depends="compile.module.iteratorpattern.production,compile.module.iteratorpattern.tests" description="Compile module iteratorPattern"/>
+  
+  <target name="compile.module.iteratorpattern.production" depends="register.custom.compilers" description="Compile module iteratorPattern; production classes">
+    <mkdir dir="${iteratorpattern.output.dir}"/>
+    <javac2 destdir="${iteratorpattern.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.iteratorpattern}/javac">
+      <compilerarg line="${compiler.args.iteratorpattern}"/>
+      <bootclasspath refid="iteratorpattern.module.bootclasspath"/>
+      <classpath refid="iteratorpattern.module.production.classpath"/>
+      <src refid="iteratorpattern.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.iteratorpattern"/>
+    </javac2>
+    
+    <copy todir="${iteratorpattern.output.dir}">
+      <fileset dir="${module.iteratorpattern.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.iteratorpattern.tests" depends="register.custom.compilers,compile.module.iteratorpattern.production" description="compile module iteratorPattern; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.iteratorpattern" description="cleanup module">
+    <delete dir="${iteratorpattern.output.dir}"/>
+    <delete dir="${iteratorpattern.testoutput.dir}"/>
+  </target>
+</project>
