@@ -115,3 +115,17 @@ INSERT INTO salgrade VALUES (4, 2001, 3000);
 INSERT INTO salgrade VALUES (5, 3001, 9999);
 
 COMMIT;
+
+
+create or replace procedure show_emp( p_empno in number )
+is
+begin
+  for c1 in (select * from emp where empno = p_empno) loop
+
+    dbms_output.put_line('Name: ' || c1.ename);
+    dbms_output.put_line('Job: ' || c1.job);
+    dbms_output.put_line('Salary: ' || c1.sal);
+    dbms_output.put_line('Commission: ' || c1.comm);
+  end loop;
+end show_emp;
+/
