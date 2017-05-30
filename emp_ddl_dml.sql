@@ -152,5 +152,17 @@ select substr(column1,LEVEL,1) XX from table1
 connect by level <= (select length(column1) from table1)
 order by level;
 
-select column1,substr(column1,LEVEL,1),level XX from table1 A1
+select distinct column1,substr(column1,LEVEL,1),level XX from table1 A1
 connect  by level <= (select length(column1) from table1 a2 where a2.column1 = A1.column1);
+
+WITH levels AS (
+  SELECT LEVEL AS lvl
+  FROM   DUAL
+  CONNECT BY LEVEL <= ( SELECT MAX( length(column1) ) FROM table1 )
+)
+SELECT column1,
+       substr(column1,lvl,1),
+       lvl
+FROM   table1,levels
+where  lvl <= length(column1)
+ORDER BY column1,lvl
