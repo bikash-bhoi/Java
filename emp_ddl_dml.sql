@@ -129,3 +129,28 @@ begin
   end loop;
 end show_emp;
 /
+
+
+SELECT RPAD(' ', (level-1)*6)||ENAME,
+       CONNECT_BY_ROOT ename  Root,
+       connect_by_isleaf "IS A LEAF?",
+       LTRIM(Sys_connect_by_path(ename,'->'),'->') PATH,
+       LEVEL
+FROM   EMP
+--where level<5
+CONNECT BY NOCYCLE  PRIOR EMPNO = MGR
+START WITH   ENAME = 'KING';
+order siblings by ename;
+
+create table table1(column1 varchar2(10));
+insert into table1 values ('INDIA');
+insert into table1 values ('USA');
+delete from table1 where column1='USA';
+SELECT * FROM table1;
+
+select substr(column1,LEVEL,1) XX from table1
+connect by level <= (select length(column1) from table1)
+order by level;
+
+select column1,substr(column1,LEVEL,1),level XX from table1 A1
+connect  by level <= (select length(column1) from table1 a2 where a2.column1 = A1.column1);
