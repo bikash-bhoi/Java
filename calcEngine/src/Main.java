@@ -31,21 +31,7 @@ public class Main {
             equation.execute();
             System.out.println("Result : " + equation.getResult());
         }
-
-        System.out.println();
-        System.out.println("Overload");
-        System.out.println();
-
-        int val1 = 10;
-        int val2 = 3;
-
-        MathEquation eqOverload =  new MathEquation('/');
-        eqOverload.execute(val1, val2);
-        System.out.println("Result = " + eqOverload.getResult());
-        
     }
-
-
 //
 //    public static  MathEquation create (double val1, double val2, char opCode){
 //        MathEquation equation = new MathEquation();

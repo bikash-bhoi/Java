@@ -29,19 +29,6 @@ public class MathEquation {
         this.val2 = val2;
     }
 
-    public void execute(double val1, double val2){
-        this.val1 = val1;
-        this.val2 = val2;
-        execute();
-    }
-
-    public void execute(int val1, int val2){
-        this.val1 = val1;
-        this.val2 = val2;
-        execute();
-        result = (int)result;
-    }
-
     public void execute(){
         switch (opCode) {
             case '+':

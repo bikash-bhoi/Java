@@ -1,5 +1,6 @@
 import com.sun.rowset.JdbcRowSetImpl;
 import java.sql.*;
+import javax.sql.RowSet;
 import javax.sql.rowset.JdbcRowSet;
 import java.sql.SQLException;
 
@@ -21,7 +22,7 @@ public class PersonBean {
             rowSet.setUrl(DB_URL);
             rowSet.setUsername(DB_USER);
             rowSet.setPassword(DB_PASS);
-            rowSet.setCommand("SELECT * FROM Person");
+            rowSet.setCommand("SELECT * FROM Person order by personid");
             rowSet.execute();
 
         } catch (SQLException | ClassNotFoundException ex) {
@@ -37,6 +38,9 @@ public class PersonBean {
             rowSet.updateString("lastName", p.getLastName());
             rowSet.updateString("email", p.getEmail());
             rowSet.updateString("phone", p.getPhone());
+            System.out.println("Rowset :  " +rowSet);
+            //rowSet.setCommand("Insert into PERSON (PERSONID,FIRSTNAME,MIDDLENAME,LASTNAME,EMAIL,PHONE) values ("+p.getPersonId()+","+p.getFirstName()+","+p.getMiddleName()+","+p.getLastName()+","+p.getEmail()+","+p.getPhone()+")");
+            rowSet.execute();
             rowSet.insertRow();
             rowSet.moveToCurrentRow();
         } catch (SQLException ex) {
@@ -169,4 +173,6 @@ public class PersonBean {
         }
         return p;
     }
+
+
 }

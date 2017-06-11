@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
+import static javax.swing.SwingConstants.RIGHT;
+
 /**
  * Created by Biks on 5/30/2017.
  */
@@ -32,7 +34,7 @@ public class PersonUI extends JPanel {
     public PersonUI() {
         setBorder(new TitledBorder
                 (new EtchedBorder(),"Person Details"));
-        setLayout(new BorderLayout(5, 5));
+        setLayout(new BorderLayout(5, 3));
         add(initFields(), BorderLayout.NORTH);
         add(initButtons(), BorderLayout.CENTER);
         setFieldData(bean.moveFirst());
@@ -60,24 +62,26 @@ public class PersonUI extends JPanel {
 
     private JPanel initFields() {
         JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
+        Dimension dim = new Dimension(40,120);
+        panel.setPreferredSize(dim);
+        panel.setLayout(new GridLayout(6,2));
         panel.add(new JLabel("ID"), "align label");
         panel.add(idField, "wrap");
         idField.setEnabled(false);
         panel.add(new JLabel("First Name"), "align label");
-        panel.add(fNameField, "wrap");
-        fNameField.setEnabled(false);
+        panel.add(fNameField, "align label");
+        //fNameField.setEnabled(false);
         panel.add(new JLabel("Middle Name"), "align label");
-        panel.add(mNameField, "wrap");
-        mNameField.setEnabled(false);
+        panel.add(mNameField, "align label");
+        //mNameField.setEnabled(false);
         panel.add(new JLabel("Last Name"), "align label");
-        panel.add(lNameField, "wrap");
-        lNameField.setEnabled(false);
+        panel.add(lNameField, "align label");
+        //lNameField.setEnabled(false);
         panel.add(new JLabel("email"), "align label");
-        panel.add(emailField, "wrap");
-        emailField.setEnabled(false);
+        panel.add(emailField, "align label");
+        //emailField.setEnabled(false);
         panel.add(new JLabel("Phone"), "align label");
-        panel.add(phoneField, "wrap");
+        panel.add(phoneField, "align label");
         return panel;
     }
 
@@ -123,9 +127,9 @@ public class PersonUI extends JPanel {
                     if (bean.create(p) != null)
                         JOptionPane.showMessageDialog(null,
                                 "New person created successfully.");
-                    createButton.setText("New...");
+                    createButton.setText("New..");
                     break;
-                case "New...":
+                case "New..":
                     p.setPersonId(new Random()
                             .nextInt(Integer.MAX_VALUE) + 1);
                     p.setFirstName("");

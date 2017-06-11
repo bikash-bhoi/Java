@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.sql.*;
+
 
 public class Main {
 
@@ -35,6 +37,16 @@ public class Main {
         System.out.println("Trying to remove when there are no Passengers");
         del045.removeLastPassenger();
         del045.printPassengers();
+
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","scott","tiger");
+            Statement st = con.createStatement();
+
+
+        } catch (Exception e) {
+            System.out.println("Not successful");
+        }
 
     }
 

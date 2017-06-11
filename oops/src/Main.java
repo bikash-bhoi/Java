@@ -4,18 +4,18 @@ public class Main {
 /*
         Flight flight1 = new Flight();
         //System.out.println(flight1.passengers);
-        flight1.add1passenger();
+        flight1.add1Passenger();
         //System.out.println(flight1.passengers);
         flight1.passengers = flight1.passengers+149;
         //System.out.println(flight1.passengers);
-        //flight1.add1passenger();
+        //flight1.add1Passenger();
 
         //return Object
         Flight del1 = new Flight();
         Flight del2 = new Flight();
-        del1.add1passenger();
+        del1.add1Passenger();
         del1.passengers += 148;
-        del2.add1passenger();
+        del2.add1Passenger();
         Flight del3 = null;
         if (del1.hasRoom(del2))
             del3 = del1.createNewWithBoth(del2);
@@ -33,20 +33,20 @@ public class Main {
         //Object Reference
 
         Flight fl1 = new Flight();
-        fl1.add1passenger();
-        fl1.add1passenger();
+        fl1.add1Passenger();
+        fl1.add1Passenger();
         Flight fl2 = fl1;
         System.out.println("passengers in fl1 before : " + fl1.passengers);
         System.out.println("passengers in fl2 before : " + fl2.passengers);
 
-        fl1.add1passenger();
-        fl1.add1passenger();
+        fl1.add1Passenger();
+        fl1.add1Passenger();
         System.out.println("passengers in fl1 after : " + fl1.passengers);
         System.out.println("passengers in fl2 after : " + fl2.passengers);
 
-        fl1.add1passenger();
-        fl2.add1passenger();
-        fl2.add1passenger();
+        fl1.add1Passenger();
+        fl2.add1Passenger();
+        fl2.add1Passenger();
         System.out.println("passengers in fl1 after adding to fl2: " + fl1.passengers);
         System.out.println("passengers in fl2 after adding to fl2: " + fl2.passengers);
 */
