@@ -166,3 +166,13 @@ SELECT column1,
 FROM   table1,levels
 where  lvl <= length(column1)
 ORDER BY column1,lvl
+
+WITH levels AS (
+  SELECT LEVEL lvl
+  FROM   DUAL
+  CONNECT BY LEVEL <= ( SELECT (MAX(length(codes))+1)/2 FROM tax )
+)
+select sl,substr(codes,lvl*2-1,1),perc
+from tax,levels
+where lvl<=(length(codes)+1)/2
+order by sl,lvl;
