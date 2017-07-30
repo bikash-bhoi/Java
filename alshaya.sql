@@ -37,3 +37,14 @@ select p.product_name
   where p.product_id = sd.product_id
   group by p.product_name
   having min(sd.diff) > 0;
+
+--(7)
+with diff 
+  as(select level lvl 
+     from dual
+     connect by level<=600)
+select sysdate-lvl 
+  from diff
+ where sysdate-lvl > '1-Jan-2017' 
+   and to_char(sysdate-lvl,'Dy') ='Fri'
+ order by lvl desc;
